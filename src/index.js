@@ -1,27 +1,46 @@
 import './css/styles.css';
-import { fetchImages } from './fetchImages';
+import { getApiResponse, requestParameters } from './js/fetchImages';
+import { getGallery } from './js/gallery';
 
-const messadges = {
-  emptyArrayMessadge:
-    'Sorry, there are no images matching your search query. Please try again.',
-  endCollectionMessadge:
-    "We're sorry, but you've reached the end of search results.",
+const searchFormEl = document.querySelector('.search-form');
+const inputEl = searchFormEl.querySelector('input');
+const searchBtnEl = searchFormEl.querySelector('button');
+const galleryEl = document.querySelector('.gallery');
+const loadMoreBtnEl = document.querySelector('.load-more');
 
-  totalHitsMessadge: function getTotalHitsMessadge(totalHits) {
-    return `Hooray! We found ${totalHits} images.`;
-  },
-};
+inputEl.addEventListener('input', onInputElInput);
+searchBtnEl.addEventListener('click', onSearchBtnElClick);
+loadMoreBtnEl.addEventListener('click', onLoadMoreBtnClick);
 
-//delete
-fetchImages('flowers').then(images => {
-  console.log(images.totalHits, images.total);
-  // if (countries.length === 1) {
-  //   renderCountryInfo(countries, cardStylesProperties.svgHeight);
-  //   styleCountryCard(countryInfoEl, cardStylesProperties);
-  // } else if (countries.length > 1 && countries.length <= 10) {
-  //   renderCountryList(countries, listStylesProperties.svgHeight);
-  //   styleCountryList(countryListEl, listStylesProperties);
-  // } else {
-  //   Notify.info(toMuchMessage);
-  // }
-});
+let searchText = '';
+
+function onInputElInput() {
+  galleryEl.innerHTML = '';
+  requestParameters.page = 1;
+  searchText = inputEl.value;
+  searchBtnEl.disabled = false;
+  loadMoreBtnEl.classList.add('visually-hidden');
+}
+
+function onSearchBtnElClick(event) {
+  event.preventDefault();
+
+  getApiResponse(searchText).then(images => {
+    if (images.totalHits > requestParameters.per_page) {
+      loadMoreBtnEl.classList.remove('visually-hidden');
+    }
+    searchBtnEl.disabled = true;
+
+    getGallery(images.hits);
+  });
+}
+
+function onLoadMoreBtnClick() {
+  getApiResponse(searchText).then(images => {
+    getGallery(images.hits);
+
+    if (requestParameters.page === 1) {
+      loadMoreBtnEl.classList.add('visually-hidden');
+    }
+  });
+}
