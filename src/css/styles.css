@@ -90,7 +90,8 @@ button:hover {
 }
 
 .header--no-transparency {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);  
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 
