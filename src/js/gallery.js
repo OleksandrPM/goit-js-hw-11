@@ -3,15 +3,15 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 export { getGallery };
 
-const itemsInRow = 5;
+const itemsInRow = 4;
 
 const galleryEl = document.querySelector('.gallery');
 
-let imageWidth = galleryEl.offsetWidth / (itemsInRow + 0.1 * (itemsInRow - 1));
+let lightbox = new SimpleLightbox('.gallery a');
 
 function getGallery(images) {
   galleryEl.insertAdjacentHTML('beforeend', renderGallery(images));
-  let lightbox = new SimpleLightbox('.gallery a');
+  lightbox.refresh();
 }
 
 function renderGallery(images) {
@@ -29,14 +29,14 @@ function renderImage(imageObject) {
     downloads,
   } = imageObject;
 
-  return `<a href="${largeImageURL}">
+  return `<a href="${largeImageURL}" >
   <div class="photo-card">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" width="${imageWidth}"/>
+  <img src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
-  <p class="info-item"><b>Likes ${likes}</b></p>
-  <p class="info-item"><b>Views ${views}</b></p>
-  <p class="info-item"><b>Comments ${comments}</b></p>
-  <p class="info-item"><b>Downloads ${downloads}</b></p>
+  <p class="info-item"><b>Likes</b> ${likes}</p>
+  <p class="info-item"><b>Views</b> ${views}</p>
+  <p class="info-item"><b>Comments</b> ${comments}</p>
+  <p class="info-item"><b>Downloads</b> ${downloads}</p>
   </div>
   </div>
   </a>`;

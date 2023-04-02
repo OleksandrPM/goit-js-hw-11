@@ -15,7 +15,6 @@ loadMoreBtnEl.addEventListener('click', onLoadMoreBtnClick);
 let searchText = '';
 
 function onInputElInput() {
-  galleryEl.innerHTML = '';
   requestParameters.page = 1;
   searchText = inputEl.value;
   searchBtnEl.disabled = false;
@@ -24,6 +23,7 @@ function onInputElInput() {
 
 function onSearchBtnElClick(event) {
   event.preventDefault();
+  galleryEl.innerHTML = '';
 
   getApiResponse(searchText).then(images => {
     if (images.totalHits > requestParameters.per_page) {
