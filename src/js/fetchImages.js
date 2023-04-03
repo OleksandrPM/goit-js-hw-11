@@ -1,9 +1,10 @@
-import axios from 'axios';
 import {
   showEmptyArrayMessadge,
   showEndCollectionMessadge,
   showTotalHitsMessadge,
 } from './messadges';
+
+export { getApiResponse, requestParameters };
 
 const BASE_URL = 'https://pixabay.com/api';
 const API_KEY = '34821763-cd0390e9b5fa3f24bbb43d369';
@@ -19,8 +20,6 @@ const requestParameters = {
 };
 
 const axios = require('axios').default;
-
-export { getApiResponse, requestParameters };
 
 function getApiResponse(searchTerm) {
   requestParameters.q = searchTerm;
