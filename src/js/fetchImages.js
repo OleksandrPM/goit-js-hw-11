@@ -20,7 +20,7 @@ const requestParameters = {
   per_page: 40,
 };
 
-const axios = require('axios');
+const axios = require('axios').default;
 
 function getApiResponse(searchTerm) {
   requestParameters.q = searchTerm;
