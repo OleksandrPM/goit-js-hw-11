@@ -38,9 +38,20 @@ function onSearchBtnElClick(event) {
 function onLoadMoreBtnClick() {
   getApiResponse(searchText).then(images => {
     getGallery(images.hits);
+    scrollGallerySmoozly(galleryEl);
 
     if (requestParameters.page === 1) {
       loadMoreBtnEl.classList.add('visually-hidden');
     }
+  });
+}
+
+function scrollGallerySmoozly(galleryEl) {
+  const { height: cardHeight } =
+    galleryEl.firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
   });
 }
