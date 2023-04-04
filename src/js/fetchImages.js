@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import {
   showEmptyArrayMessadge,
   showEndCollectionMessadge,
@@ -18,8 +20,6 @@ const requestParameters = {
   page: 1,
   per_page: 40,
 };
-
-const axios = require('axios').default;
 
 function getApiResponse(searchTerm) {
   requestParameters.q = searchTerm;
