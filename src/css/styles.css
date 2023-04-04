@@ -108,7 +108,7 @@ button:hover {
 .search-form button {
   border: 0;
   padding: 5px;
-  font-size: 1vw;
+  font-size: 2.2vw;
 }
 
 .search-form input {
@@ -226,6 +226,7 @@ label {
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
+  font-size: 2.2vw;
 }
 
 @keyframes gradient {
