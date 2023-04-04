@@ -96,9 +96,11 @@ button:hover {
 }
 
 #search-form {
+  display: flex;
+  align-items: center;
   font: inherit;
   position: relative;
-  width: 20rem;
+  width: 40vw;
   border-radius: 10px;
 }
 
@@ -106,7 +108,7 @@ button:hover {
 .search-form button {
   border: 0;
   padding: 5px;
-  font-size: 1rem;
+  font-size: 1vw;
 }
 
 .search-form input {
@@ -128,7 +130,7 @@ button:hover {
   position: absolute;
   top: 0;
   right: 0;
-  width: 6rem;
+  width: 10vw;
   font-weight: bold;
 
   border-radius: 0 10px 10px 0;
@@ -136,7 +138,7 @@ button:hover {
 
 .search-form input:not(:placeholder-shown) {
   border-radius: 10px 0 0 10px;
-  width: calc(100% - 6rem);
+  width: calc(100% - 10vw);
 }
 
 input:not(:placeholder-shown) + button {
@@ -155,7 +157,6 @@ label {
 
 /* Gallery */
 .gallery_section {
-  width: 95%;
   margin-left: auto;
   margin-right: auto;
   padding: 70px 20px 50px 20px;
@@ -164,8 +165,10 @@ label {
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: calc(100% / 4.3 * 0.1);
-  row-gap: 20px;
+  width: 95vw;
+  gap: calc(95vw / 4.3 * 0.1);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .gallery a {
@@ -174,7 +177,15 @@ label {
 
 .photo-card {
   width: 100%;
+  border-radius: 2px;
+  overflow: hidden;
   background-color: rgba(242, 230, 230, 0.81);
+}
+
+.photo-card:hover,
+.photo-card:focus {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2), 0px 4px 4px rgba(0, 0, 0, 0.1),
+    1px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .photo-card img {
@@ -197,8 +208,20 @@ label {
   padding: 5px;
 }
 
+@media screen and (max-width: 767.98px) {
+  .info {
+    display: block;
+    text-align: start;
+  }
+  .info p {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-size: 1.2vw;
+  }
+}
+
 .load-more {
-  width: 320px;
+  width: 30vw;
   display: block;
   margin-top: 50px;
   margin-left: auto;
